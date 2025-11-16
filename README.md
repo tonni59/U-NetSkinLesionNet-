@@ -321,7 +321,52 @@ This increases clinical trust in the model.
 
 ## **1. Run K-means Segmentation**
 
+# U-NetSkinLesionNet++  
+### A Hybrid Segmentation–Augmentation–Classification Framework for Skin Cancer Detection
 
+<p align="center">
+  <img src="images/Updated_Methodology.png" alt="Proposed Methodology Overview" width="950">
+</p>
+
+This repository presents **U-NetSkinLesionNet++**, a complete deep-learning pipeline for **automated skin cancer diagnosis**.  
+It integrates:
+
+- **K-means clustering** for initial lesion segmentation  
+- **U-Net++** for refined medical-grade segmentation  
+- **CycleGAN** for synthetic malignant lesion generation  
+- **CNN + Vision Transformer (CNN–ViT) hybrid classifier** and other SOTA models  
+- **GradCAM++** for visual explainability  
+
+The goal is to improve melanoma detection using high-quality segmentation, balanced data, and advanced classification.
+
+---
+
+## 📂 1. Repository Structure
+
+```text
+U-NetSkinLesionNet-/
+│
+├── k-means-skin-2.ipynb              # K-means clustering segmentation
+├── skin-cancer-u-net-2.ipynb         # U-Net++ segmentation + CycleGAN pipeline
+├── u-net++.ipynb                     # Standalone U-Net++ segmentation
+├── skin-cancer-defense-2.ipynb       # Classification & GradCAM++
+│
+├── images/                           # All figures used in README
+│   ├── Updated_Methodology.png
+│   ├── Dataset_Description.png
+│   ├── KMeans_Clustering_Flow.png
+│   ├── KMeans_Display.png
+│   ├── KMeans_Segmented.png
+│   ├── UNetpp_Architecture.png
+│   ├── UNetpp_Display.png
+│   ├── UNetpp_Segmented.png
+│   ├── CycleGAN_Display.png
+│   ├── Proposed_CNN_ViT_Model.png
+│   └── ...
+│
+└── README.md
+
+```
 ---
 
 # 🚀 14. Conclusion
@@ -365,4 +410,6 @@ Future improvements include:
 
 # ⭐ Support  
 If you found this project useful, please **star ⭐ this repository**.
+
+
 
