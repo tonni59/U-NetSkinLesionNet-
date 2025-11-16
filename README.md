@@ -321,51 +321,198 @@ This increases clinical trust in the model.
 
 ## **1. Run K-means Segmentation**
 
-# U-NetSkinLesionNet++  
-### A Hybrid Segmentation–Augmentation–Classification Framework for Skin Cancer Detection
+# U-NetSkinLesionNet++
+### Hybrid Segmentation–Augmentation–Classification Framework for Skin Cancer Detection
 
 <p align="center">
-  <img src="images/Updated_Methodology.png" alt="Proposed Methodology Overview" width="950">
+  <img src="methodology/Updated Methodology.png" width="950">
 </p>
 
-This repository presents **U-NetSkinLesionNet++**, a complete deep-learning pipeline for **automated skin cancer diagnosis**.  
-It integrates:
+This repository presents **U-NetSkinLesionNet++**, a full hybrid deep-learning system integrating:
 
-- **K-means clustering** for initial lesion segmentation  
-- **U-Net++** for refined medical-grade segmentation  
-- **CycleGAN** for synthetic malignant lesion generation  
-- **CNN + Vision Transformer (CNN–ViT) hybrid classifier** and other SOTA models  
-- **GradCAM++** for visual explainability  
+- **K-means segmentation**
+- **U-Net++ segmentation**
+- **CycleGAN augmentation**
+- **CNN + Vision Transformer classifier**
+- **GradCAM++ explainability**
 
-The goal is to improve melanoma detection using high-quality segmentation, balanced data, and advanced classification.
+The goal is to improve **melanoma detection accuracy** through segmentation, augmentation, and advanced classification.
 
 ---
 
-## 📂 1. Repository Structure
+# 📌 1. Dataset Description
 
-```text
-U-NetSkinLesionNet-/
-│
-├── k-means-skin-2.ipynb              # K-means clustering segmentation
-├── skin-cancer-u-net-2.ipynb         # U-Net++ segmentation + CycleGAN pipeline
-├── u-net++.ipynb                     # Standalone U-Net++ segmentation
-├── skin-cancer-defense-2.ipynb       # Classification & GradCAM++
-│
-├── images/                           # All figures used in README
-│   ├── Updated_Methodology.png
-│   ├── Dataset_Description.png
-│   ├── KMeans_Clustering_Flow.png
-│   ├── KMeans_Display.png
-│   ├── KMeans_Segmented.png
-│   ├── UNetpp_Architecture.png
-│   ├── UNetpp_Display.png
-│   ├── UNetpp_Segmented.png
-│   ├── CycleGAN_Display.png
-│   ├── Proposed_CNN_ViT_Model.png
-│   └── ...
-│
-└── README.md
+<p align="center">
+  <img src="methodology/Dataset Description 05.13.01.png" width="950">
+</p>
 
+The dataset includes dermoscopic images from **benign** and **malignant** classes with color, texture, and shape variations.
+
+### Dataset Split
+
+| Dataset | Benign | Malignant |
+|---------|--------|-----------|
+| Train   | 1440   | 1197      |
+| Test    | 360    | 300       |
+
+---
+
+# 🧠 2. Methodology Overview
+
+<p align="center">
+  <img src="methodology/Updated Methodology.png" width="950">
+</p>
+
+### Pipeline Summary
+
+1. **K-means segmentation**
+2. **U-Net++ segmentation**
+3. **CycleGAN data augmentation**
+4. **Hybrid CNN–ViT classification**
+5. **Evaluation and GradCAM++ explainability**
+
+---
+
+# 🔍 3. K-means Clustering Segmentation
+
+<p align="center">
+  <img src="methodology/k-means clustering.png" width="900">
+</p>
+
+### K-means Steps
+1. Convert to grayscale  
+2. Apply K-means  
+3. Select lesion cluster  
+4. Apply Otsu threshold  
+5. Morphological operations  
+6. Extract segmented lesion  
+
+### Example (Original → K-means Output)
+
+<p align="center">
+  <img src="methodology/K-means display.png" width="950">
+</p>
+
+### K-means Final Segmented Samples
+
+<p align="center">
+  <img src="methodology/K-Means segmented.png" width="950">
+</p>
+
+---
+
+# 🩺 4. U-Net++ Segmentation
+
+<p align="center">
+  <img src="methodology/Unet++.png" width="950">
+</p>
+
+### Why U-Net++?
+
+- Dense skip connections  
+- Multi-scale learning  
+- Superior boundary refinement  
+- Ideal for medical lesion segmentation  
+
+### U-Net++ Architecture
+
+<p align="center">
+  <img src="methodology/U-Net++ display.png" width="950">
+</p>
+
+### U-Net++ Segmented Outputs
+
+<p align="center">
+  <img src="methodology/u-net++ segmented.png" width="950">
+</p>
+
+---
+
+# 🎨 5. CycleGAN Data Augmentation
+
+<p align="center">
+  <img src="methodology/CycleGAN.jpg" width="850">
+</p>
+
+CycleGAN generates **new malignant lesion images**, solving dataset imbalance.
+
+### CycleGAN Output Samples
+
+<p align="center">
+  <img src="methodology/Display CycleGAN.png" width="950">
+</p>
+
+---
+
+# 🧬 6. Proposed CNN–ViT Hybrid Model
+
+<p align="center">
+  <img src="methodology/Proposed CNN-Vit Model.png" width="950">
+</p>
+
+### Model Components
+
+- CNN backbone → Local feature extraction  
+- Transformer encoder → Global context  
+- Cross-attention layer → Fusion  
+- Classification head → Benign / Malignant prediction  
+
+This hybrid architecture achieves **state-of-the-art performance** in skin lesion classification.
+
+---
+
+# 📈 7. Training Performance
+
+## Accuracy Curve
+
+<p align="center">
+  <img src="methodology/accuracy_over_iterations.png" width="900">
+</p>
+
+## Loss Curve
+
+<p align="center">
+  <img src="methodology/loss_over_iterations.png" width="900">
+</p>
+
+---
+
+# 🧪 8. Experimental Results
+
+### Classification Performance
+
+| Model                    | Accuracy | Precision | Recall | F1 Score |
+|--------------------------|----------|-----------|--------|----------|
+| **Hybrid CNN–ViT (ours)**| **97.8%**| 97%       | 98%    | 97.8%    |
+| EfficientNetV2-L         | 96.0%    | 95%       | 96%    | 95.5%    |
+| Swin Transformer-B       | 95.6%    | 95%       | 95%    | 95%      |
+| ConvNeXt Base            | 95.2%    | 94%       | 95%    | 94.4%    |
+| ResNet50                 | 94.2%    | 93%       | 94%    | 93.4%    |
+
+---
+
+# 🔎 9. GradCAM++ Explainability
+
+> Helps visualize the **important lesion regions** the model uses for classification.
+
+GradCAM++ highlights:
+- Lesion asymmetry  
+- Color variations  
+- Irregular edges  
+- Darker malignant regions  
+
+(If you have GradCAM images, add them here as `methodology/gradcam.png`)
+
+---
+
+# 🛠 10. How to Run the Project
+
+### Install Dependencies
+
+```bash
+pip install tensorflow keras opencv-python scikit-learn scikit-image matplotlib
+pip install torch torchvision torchaudio
+pip install timm efficientnet
 ```
 ---
 
